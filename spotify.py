@@ -45,15 +45,15 @@ for f in fruit_dct:
         VALUES ( ?, ?, ? )''', ( fruit, cals, fat ) )
 conn.commit()
 
-#the code below grabs data 20 vegetables
-lst_vegetables = ["carrot", "lettuce", "celery", "kale", "cauliflower", "eggplant", "onion", "zucchini", "pumpkin", "artichoke", "peas", "asparagus", "beets", "chayote", "collards", "edamame", "leeks", "okra", "radish", "turnip"]
+#the code below grabs data on 20 carbs
+lst_carbs = ["carrot", "lettuce", "celery", "kale", "cauliflower", "eggplant", "onion", "zucchini", "pumpkin", "artichoke", "cucumber", "asparagus", "beets", "chayote", "collards", "edamame", "leeks", "okra", "radish", "turnip"]
 
-vegetables_dct = {}
+carbs_dct = {}
 
-for x in lst_vegetables:
-    vegetable = x
+for x in lst_carbs:
+    carb = x
 
-    r = requests.get("https://nutritionix-api.p.rapidapi.com/v1_1/search/" + str(vegetable) + "?fields=item_name%2Cnf_calories%2Cnf_total_fat",
+    r = requests.get("https://nutritionix-api.p.rapidapi.com/v1_1/search/" + str(carb) + "?fields=item_name%2Cnf_calories%2Cnf_total_fat",
     headers={
         "X-RapidAPI-Host": "nutritionix-api.p.rapidapi.com",
         "X-RapidAPI-Key": "cf4e917886msh55aa777294792f6p184fc7jsn65800e83c44f"
@@ -62,17 +62,46 @@ for x in lst_vegetables:
 
     req_obj = json.loads(r.text)
 
-    vegetables_dct[vegetable] = []
+    carbs_dct[carb] = []
 
-    vegetables_dct[vegetable].append((req_obj['hits'][1]['fields']['item_name']))
-    vegetables_dct[vegetable].append((req_obj['hits'][1]['fields']['nf_calories']))
-    vegetables_dct[vegetable].append((req_obj['hits'][1]['fields']['nf_total_fat']))
+    carbs_dct[carb].append((req_obj['hits'][1]['fields']['item_name']))
+    carbs_dct[carb].append((req_obj['hits'][1]['fields']['nf_calories']))
+    carbs_dct[carb].append((req_obj['hits'][1]['fields']['nf_total_fat']))
 
-for v in vegetables_dct:
-    veg = vegetables_dct[v][0]
-    v_cals = vegetables_dct[v][1]
-    v_fat = vegetables_dct[v][2]
+for v in carbs_dct:
+    veg = carbs_dct[v][0]
+    v_cals = carbs_dct[v][1]
+    v_fat = carbs_dct[v][2]
 
     cur.execute('''INSERT OR IGNORE INTO Nutrition (food, cals, fat) 
         VALUES ( ?, ?, ? )''', ( veg, v_cals, v_fat ) )
+conn.commit()
+
+#the code below grabs data on 20 foods from the carbohydrates food group
+
+for c in lst_carbs:
+    carb = x
+
+    r = requests.get("https://nutritionix-api.p.rapidapi.com/v1_1/search/" + str(carb) + "?fields=item_name%2Cnf_calories%2Cnf_total_fat",
+    headers={
+        "X-RapidAPI-Host": "nutritionix-api.p.rapidapi.com",
+        "X-RapidAPI-Key": "cf4e917886msh55aa777294792f6p184fc7jsn65800e83c44f"
+    }
+    )
+
+    req_obj = json.loads(r.text)
+
+    carbs_dct[carb] = []
+
+    carbs_dct[carb].append((req_obj['hits'][1]['fields']['item_name']))
+    carbs_dct[carb].append((req_obj['hits'][1]['fields']['nf_calories']))
+    carbs_dct[carb].append((req_obj['hits'][1]['fields']['nf_total_fat']))
+
+for c in carbs_dct:
+    carb_name = carbs_dct[c][0]
+    c_cals = carbs_dct[c][1]
+    c_fat = carbs_dct[c][2]
+
+    cur.execute('''INSERT OR IGNORE INTO Nutrition (food, cals, fat) 
+        VALUES ( ?, ?, ? )''', ( carb_name, c_cals, c_fat ) )
 conn.commit()
