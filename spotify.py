@@ -14,9 +14,7 @@ import sqlite3
 
 lst_fruit = ["apple", "banana", "pear", "grapes", "persimmon", "kiwi", "blueberries", "watermelon", "grapefruit", "guava", "plum", "mango", "peach", "cantaloupe", "pomegranate", "papaya", "apricot", "cranberry", "blackberries", "nectarine"]
 
-lst_name_fruit = []
-lst_fruit_cals = []
-lst_fruit_fat = []
+fruit_dct = {}
 
 for x in lst_fruit:
     fruit = x
@@ -30,13 +28,11 @@ for x in lst_fruit:
 
     req_obj = json.loads(r.text)
 
-    lst_name_fruit.append((req_obj['hits'][1]['fields']['item_name']))
-    lst_fruit_cals.append((req_obj['hits'][1]['fields']['nf_calories']))
-    lst_fruit_fat.append((req_obj['hits'][1]['fields']['nf_total_fat']))
+    fruit_dct[fruit] = []
 
-print(lst_name_fruit)
-print(lst_fruit_cals)
-print(lst_fruit_fat)
+    fruit_dct[fruit].append((req_obj['hits'][1]['fields']['item_name']))
+    fruit_dct[fruit].append((req_obj['hits'][1]['fields']['nf_calories']))
+    fruit_dct[fruit].append((req_obj['hits'][1]['fields']['nf_total_fat']))
 
 conn = sqlite3.connect('nutrition.sqlite')
 cur = conn.cursor()
@@ -44,17 +40,11 @@ cur = conn.cursor()
 cur.execute("DROP TABLE IF EXISTS Nutrition")
 cur.execute('CREATE TABLE Nutrition (fruit TEXT, cals INTEGER, fat INTEGER)')
 
-for x in lst_name_fruit:
-    fruit = x
-    cur.execute('''INSERT OR IGNORE INTO Nutrition (fruit) 
-        VALUES ( ? )''', ( fruit ) )
+for f in fruit_dct:
+    fruit = fruit_dct[f][0]
+    cals = fruit_dct[f][1]
+    fat = fruit_dct[f][2]
 
-for y in lst_fruit_cals:
-    cals = y
-    cur.execute('''INSERT OR IGNORE INTO Nutrition (cals) 
-        VALUES ( ? )''', ( cals ) )
-
-for z in lst_fruit_fat:
-    fat = z
-    cur.execute('''INSERT OR IGNORE INTO Nutrition (fat) 
-        VALUES ( ? )''', ( fat ) )
+    cur.execute('''INSERT OR IGNORE INTO Nutrition (fruit, cals, fat) 
+        VALUES ( ?, ?, ? )''', ( fruit, cals, fat ) )
+conn.commit()
