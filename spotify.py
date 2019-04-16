@@ -109,7 +109,7 @@ for c in carbs_dct:
         VALUES ( ?, ?, ? )''', ( carb_name, c_cals, c_fat ) )
 conn.commit()
 
-#the code below grabs data on 15 proteins
+#the code below grabs data on 20 foods high in protein
 lst_proteins = ["chicken", "pork", "beef", "lamb", "sausage", "cod", "turkey", "tuna", "salmon", "lentils", "beans", "chickpeas", "tofu", "bacon", "duck", "steak", "hotdog", "patty", "salami", "crab"]
 
 protein_dct = {}
@@ -139,4 +139,67 @@ for p in protein_dct:
 
     cur.execute('''INSERT OR IGNORE INTO Nutrition (food, cals, fat) 
         VALUES ( ?, ?, ? )''', ( prot_name, p_cals, p_fat ) )
+conn.commit()
+
+#this code will grab data on 10 dairy products
+lst_dairy = ["skimmilk", "yoghurt", "pudding", "wholemilk", "mozzarella", "creamcheese", "whippedcream", "provolone", "goatmilk", "condensedmilk"]
+
+dairy_dct = {}
+
+for d in lst_dairy:
+    dairy = d
+
+    r = requests.get("https://nutritionix-api.p.rapidapi.com/v1_1/search/" + str(dairy) + "?fields=item_name%2Cnf_calories%2Cnf_total_fat",
+    headers={
+        "X-RapidAPI-Host": "nutritionix-api.p.rapidapi.com",
+        "X-RapidAPI-Key": "cf4e917886msh55aa777294792f6p184fc7jsn65800e83c44f"
+    }
+    )
+
+    req_obj = json.loads(r.text)
+
+    dairy_dct[dairy] = []
+
+    dairy_dct[dairy].append((req_obj['hits'][1]['fields']['item_name']))
+    dairy_dct[dairy].append((req_obj['hits'][1]['fields']['nf_calories']))
+    dairy_dct[dairy].append((req_obj['hits'][1]['fields']['nf_total_fat']))
+
+for d in dairy_dct:
+    dairy_name = dairy_dct[d][0]
+    d_cals = dairy_dct[d][1]
+    d_fat = dairy_dct[d][2]
+
+    cur.execute('''INSERT OR IGNORE INTO Nutrition (food, cals, fat) 
+        VALUES ( ?, ?, ? )''', ( dairy_name, d_cals, d_fat ) )
+conn.commit()
+
+#this code will grab data on 10 desserts
+lst_desserts = ["chocolatechipcookie", "brownie", "cake", "glazeddonut", "shortbread", "chocolatebar", "macaron", "blondie", "tart", "pastry"]
+
+desserts_dct = {}
+
+for dess in lst_desserts:
+    dessert = dess
+
+    r = requests.get("https://nutritionix-api.p.rapidapi.com/v1_1/search/" + str(dessert) + "?fields=item_name%2Cnf_calories%2Cnf_total_fat",
+    headers={
+        "X-RapidAPI-Host": "nutritionix-api.p.rapidapi.com",
+        "X-RapidAPI-Key": "cf4e917886msh55aa777294792f6p184fc7jsn65800e83c44f"
+    }
+    )
+    req_obj = json.loads(r.text)
+
+    desserts_dct[dessert] = []
+
+    desserts_dct[dessert].append((req_obj['hits'][1]['fields']['item_name']))
+    desserts_dct[dessert].append((req_obj['hits'][1]['fields']['nf_calories']))
+    desserts_dct[dessert].append((req_obj['hits'][1]['fields']['nf_total_fat']))
+
+for dess in desserts_dct:
+    dess_name = desserts_dct[dess][0]
+    dess_cals = desserts_dct[dess][1]
+    dess_fat = desserts_dct[dess][2]
+
+    cur.execute('''INSERT OR IGNORE INTO Nutrition (food, cals, fat) 
+        VALUES ( ?, ?, ? )''', ( dess_name, dess_cals, dess_fat ) )
 conn.commit()
