@@ -1,6 +1,44 @@
+from menus import *
+
+import json
+import requests 
+import urllib
+import ssl
+import sqlite3
+
 import plotly.plotly as py
 import plotly.graph_objs as go
 
-py.tools.set_credentials_file(username = "josephkc", api_key="3Q6YJh0ZIkkQuKBdRKb6")
+def count_cuisines(cur):
+    cuisines_dict = {}
+    cur.execute("SELECT cuisine FROM AnnArbor")
+    for row in cur:
+        if row[0] not in cuisines_dict:
+            cuisines_dict[row[0]] = 1
+        else:
+            cuisines_dict[row[0]] += 1
 
-trace0 = go.Scatter
+    return(cuisines_dict)
+
+def calculate_top_five(cuisines_dict):
+    cd = cuisines_dict
+    for x in range(5):
+        for cuisine in cd.values():
+            pass
+            
+
+# py.tools.set_credentials_file(username = "josephkc", api_key="3Q6YJh0ZIkkQuKBdRKb6")
+
+# trace1 = go.Scatter(
+#   x = [1, 2, 3, 4], 
+#   y = [10, 15, 13, 17]
+# )
+# trace2 = go.Scatter(
+#   x = [1, 2, 3, 4], 
+#   y = [16, 5, 11, 9]
+# )
+
+
+
+# py.plot([trace1, trace2])
+
