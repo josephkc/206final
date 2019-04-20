@@ -30,20 +30,19 @@ def calculate_top_five(cuisines_dict):
 
     return cuisines_sorted[:5]
 
-def visualize():
+def visualize(tuple_list):
+    # py.tools.set_credentials_file(username = "josephkc", api_key="3Q6YJh0ZIkkQuKBdRKb6")
+    keys = []
+    values = []
 
-    py.tools.set_credentials_file(username = "josephkc", api_key="3Q6YJh0ZIkkQuKBdRKb6")
+    for x in tuple_list:
+        keys.append(x[0])
+        values.append(x[1])
 
-    trace1 = go.Scatter(
-    x = [1, 2, 3, 4], 
-    y = [10, 15, 13, 17]
+    trace1 = go.Bar(
+    x = keys, 
+    y = values
     )
-    trace2 = go.Scatter(
-    x = [1, 2, 3, 4], 
-    y = [16, 5, 11, 9]
-    )
+    data = [trace1]
 
-
-
-    py.plot([trace1, trace2])
-
+    print(py.plot(data, filename = 'menus_bar_graph', auto_open=True))
