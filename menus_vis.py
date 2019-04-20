@@ -21,24 +21,29 @@ def count_cuisines(cur):
     return(cuisines_dict)
 
 def calculate_top_five(cuisines_dict):
-    cd = cuisines_dict
-    for x in range(5):
-        for cuisine in cd.values():
-            pass
-            
 
-# py.tools.set_credentials_file(username = "josephkc", api_key="3Q6YJh0ZIkkQuKBdRKb6")
+    cuisines_tuples = cuisines_dict.items()
+    tuples = []
+    for tup in cuisines_tuples:
+        tuples.append(tup)
+    cuisines_sorted = sorted(tuples, reverse = True, key = lambda tup: tup[1])
 
-# trace1 = go.Scatter(
-#   x = [1, 2, 3, 4], 
-#   y = [10, 15, 13, 17]
-# )
-# trace2 = go.Scatter(
-#   x = [1, 2, 3, 4], 
-#   y = [16, 5, 11, 9]
-# )
+    return cuisines_sorted[:5]
+
+def visualize():
+
+    py.tools.set_credentials_file(username = "josephkc", api_key="3Q6YJh0ZIkkQuKBdRKb6")
+
+    trace1 = go.Scatter(
+    x = [1, 2, 3, 4], 
+    y = [10, 15, 13, 17]
+    )
+    trace2 = go.Scatter(
+    x = [1, 2, 3, 4], 
+    y = [16, 5, 11, 9]
+    )
 
 
 
-# py.plot([trace1, trace2])
+    py.plot([trace1, trace2])
 
