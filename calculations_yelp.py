@@ -1,9 +1,14 @@
 import json
 import sqlite3
+from health import *
 
-conn = sqlite3.connect('nutrition.sqlite')
-cur = conn.cursor()
-cur.execute('SELECT cuisine FROM Yelp')    
-
-
-cur.close()
+def calculate(conn, cur):
+    dict_count = {}
+    cur.execute('SELECT * FROM Yelp')    
+    for row in cur:
+        if row[1] in dict_count:
+            dict_count[row[1]] += 1
+        else:
+            dict_count[row[1]] = 1
+    return dict_count
+    cur.close()
