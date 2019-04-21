@@ -16,6 +16,6 @@ if __name__ == "__main__":
 
 	cuisines_dict = count_cuisines(cur)
 
-	top_five = calculate_top_five(cuisines_dict)
+	top_n = calculate_top_n(cuisines_dict, 5)
 	
-	visualize(top_five)
+	visualize(top_n)
