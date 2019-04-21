@@ -1,5 +1,5 @@
 import json
-import requests 
+import requests
 import urllib
 import ssl
 import sqlite3
@@ -15,4 +15,7 @@ if __name__ == "__main__":
 	collect_data(conn, cur)
 
 	cuisines_dict = count_cuisines(cur)
-	print(calculate_top_five(cuisines_dict))
+
+	top_n = calculate_top_n(cuisines_dict, 5)
+	
+	visualize(top_n)
