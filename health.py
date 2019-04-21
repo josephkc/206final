@@ -34,36 +34,43 @@ def create_table(soup):
 	while count < 20:
 		list_hundredcities.append(get_cities(soup)[count].text)
 		count = count + 1
-
+	list_hundredcities.remove('Warren')
 	conn = sqlite3.connect(r"\Users\Owner'\Documents\si206\206final\nutrition.sqlite")
 	cur = conn.cursor()
 	cur.execute("DROP TABLE IF EXISTS Yelp")
-	cur.execute('CREATE TABLE Yelp (restaurant TEXT, cuisine TEXT, location TEXT)')
-	for location in range(len(list_hundredcities)):
-		
-		params = {'term' : 'restaurants', 'location': list_hundredcities[location], 'sort_by': 'rating', 'limit': "1"}
+	cur.execute('CREATE TABLE Yelp (row INTEGER, rating INTEGER, location TEXT)')
+	count = 0
+	for location in list_hundredcities:
+		params = {'term' : 'mexican', 'location': location, 'sort_by': 'rating', 'limit': "6"}
 
 		client = Client(MY_API_KEY)
 		req=requests.get(url, params=params, headers=headers)
-			
+		
 		# proceed only if the status code is 200
 		#print('The status code is {}'.format(req.status_code))
 
 
 		# printing the text from the response 
 		yelp_obj = json.loads(req.text)
-		yelpdata_dict = {'restaurant': yelp_obj['businesses'][0]['name'], 'cuisine': yelp_obj['businesses'][0]['categories'][0]['alias'], 'location': params['location']}
+		list_restaurants = yelp_obj['businesses']
+		yelpdata_dict = {}
+		for restaurant in list_restaurants:
+			yelpdata_dict[restaurant['rating']] = location
+			count += 1
+			# yelpdata_dict = {'rating': i['rating'], 'location': params['location']}
+			for entry in yelpdata_dict.items():
+				_rating = entry[0]
+				_location = entry[1]
+				_row = count 
 
+			cur.execute('''INSERT OR IGNORE INTO Yelp (row, rating, location)
+				VALUES (?, ?, ? )''', (_row, _rating, _location ) )
+			conn.commit()
+	
+		
 		#create connection with database
 
-		for restaurant in yelpdata_dict:
-			_restaurant = yelpdata_dict['restaurant']
-			_cuisine = yelpdata_dict['cuisine']
-			_location = yelpdata_dict['location']
-
-		cur.execute('''INSERT OR IGNORE INTO Yelp (restaurant, cuisine, location)
-			VALUES ( ?, ?, ? )''', (_restaurant, _cuisine, _location ) )
-		conn.commit()
+		
 
 
 
