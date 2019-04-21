@@ -41,7 +41,7 @@ def create_table(soup):
 	cur.execute('CREATE TABLE Yelp (row INTEGER, rating INTEGER, location TEXT)')
 	count = 0
 	for location in list_hundredcities:
-		params = {'term' : 'mexican', 'location': location, 'sort_by': 'rating', 'limit': "6"}
+		params = {'term' : 'korean', 'location': location, 'sort_by': 'rating', 'limit': "6"}
 
 		client = Client(MY_API_KEY)
 		req=requests.get(url, params=params, headers=headers)
