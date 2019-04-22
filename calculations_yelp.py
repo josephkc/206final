@@ -1,8 +1,8 @@
 import json
 import sqlite3
 from health import *
-#import plotly.plotly as py
-#import plotly.graph_objs as go
+import plotly.plotly as py
+import plotly.graph_objs as go
 
 def calculate(conn, cur):
     

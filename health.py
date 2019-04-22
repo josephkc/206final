@@ -1,5 +1,7 @@
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
+# from urllib.request import urlopen
+import urllib
+# from bs4 import BeautifulSoup
+import bs4
 from yelp.client import Client
 import json
 import requests
@@ -18,8 +20,8 @@ def getSoupObjFromURL(url):
 	ctx.check_hostname = False
 	ctx.verify_mode = ssl.CERT_NONE
 
-	html = urlopen(url, context=ctx).read()
-	soup = BeautifulSoup(html, "html.parser")
+	html = urllib.urlopen(url, context=ctx).read()
+	soup = bs4.BeautifulSoup(html, "html.parser")
 	return soup
 
 def get_cities(soup):

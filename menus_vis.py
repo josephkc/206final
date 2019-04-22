@@ -3,7 +3,7 @@ from menus import *
 import json
 import requests
 import urllib
-import ssl
+# import ssl
 import sqlite3
 
 import plotly.plotly as py
@@ -18,6 +18,11 @@ def count_cuisines(cur):
             cuisines_dict[row[0]] = 1
         else:
             cuisines_dict[row[0]] += 1
+    
+    json_file = json.dumps(cuisines_dict)
+    f = open("menus_calculations.json","w")
+    f.write(json_file)
+    f.close()
 
     return cuisines_dict
 
