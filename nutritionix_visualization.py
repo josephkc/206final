@@ -95,29 +95,28 @@ layout = go.Layout(
         text = 'Average Calories verses Average Fat for Six Food Groups',
         xref = 'paper',
         x=0
-    ),
-    xaxis = go.layout.XAxis(
-        title = go.layout.xaxis.Title(
-            text = 'Average Calories',
-            font = dict(
-                family = 'Courier New, monospace',
-                size = 18,
-                color = '#7f7f7f'
-            )
-        )
-    ),
-
-    yaxis = go.layout.YAxis(
-        title = go.layout.yaxis.Title(
-            text = 'Average Grams of Fat',
-            font = dict(
-                family = 'Courier New, monospace',
-                size = 18,
-                color = '#7f7f7f'
-            )
-        )
     )
+    # xaxis = go.layout.XAxis(
+    #     title = go.layout.xaxis.Title(
+    #         text = 'Average Calories',
+    #         font = dict(
+    #             family = 'Courier New, monospace',
+    #             size = 18,
+    #             color = '#7f7f7f'
+    #         )
+    #     )
+    # ),
 
+    # yaxis = go.layout.YAxis(
+    #     title = go.layout.yaxis.Title(
+    #         text = 'Average Grams of Fat',
+    #         font = dict(
+    #             family = 'Courier New, monospace',
+    #             size = 18,
+    #             color = '#7f7f7f'
+    #         )
+    #     )
+    # )
 )
 fig = go.Figure(data=data, layout=layout)
 
