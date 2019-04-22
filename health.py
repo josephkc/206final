@@ -7,6 +7,7 @@ import sqlite3
 import re
 import ssl
 
+
 MY_API_KEY = "2DpBTLaOVW58XXsNb3Co7v16k4HbdCfYT1-Fv-OUSubypgNCyBRjQky5xCg97GfIYqfEDu4grwKNecEw5hSdC4AuPV7LOxr-0oCzXrWbm_19lKN_pefao5kEarGqXHYx" 
 headers = {'Authorization': 'Bearer %s' % MY_API_KEY}
 
@@ -41,7 +42,7 @@ def create_table(soup):
 	cur.execute('CREATE TABLE Yelp (row INTEGER, rating INTEGER, location TEXT)')
 	count = 0
 	for location in list_hundredcities:
-		params = {'term' : 'mexican', 'location': location, 'sort_by': 'rating', 'limit': "6"}
+		params = {'term' : 'korean', 'location': location, 'sort_by': 'rating', 'limit': "6"}
 
 		client = Client(MY_API_KEY)
 		req=requests.get(url, params=params, headers=headers)
