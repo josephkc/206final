@@ -6,9 +6,10 @@ if __name__ == "__main__":
     conn = sqlite3.connect(r"\Users\Owner'\Documents\si206\206final\nutrition.sqlite")
     cur = conn.cursor()
 
-    get_cities(soup)
-    create_table(soup)
-    calculate(conn, cur)
+    
+
+    top_n = create_tuple(calculate(conn, cur), 20)
+    visualize(top_n)
 
 
     

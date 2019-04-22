@@ -7,6 +7,7 @@ import sqlite3
 import re
 import ssl
 
+
 MY_API_KEY = "2DpBTLaOVW58XXsNb3Co7v16k4HbdCfYT1-Fv-OUSubypgNCyBRjQky5xCg97GfIYqfEDu4grwKNecEw5hSdC4AuPV7LOxr-0oCzXrWbm_19lKN_pefao5kEarGqXHYx" 
 headers = {'Authorization': 'Bearer %s' % MY_API_KEY}
 
