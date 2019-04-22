@@ -61,9 +61,28 @@ def visualize(tuple_list):
         title=go.layout.Title(
             text='Most popular cuisines in Ann Arbor',
             xref='paper',
-            x=0
+            x=0,
+            font = dict(
+                family = 'Roboto',
+            )   
+        ),
+        xaxis = go.layout.XAxis(
+            title = go.layout.xaxis.Title(
+                text = 'Cuisine',
+                font = dict(
+                    family = 'Roboto',
+                )
+            )
+        ),
+
+        yaxis = go.layout.YAxis(
+            title = go.layout.yaxis.Title(
+                text = 'Number of restaurants',
+                font = dict(
+                    family = 'Roboto',
+                )
+            )
         )
     )
     fig = go.Figure(data=data, layout=layout)
     print(py.plot(fig, filename="menus_bar_graph", auto_open=True))
-    # py.plot(data)
