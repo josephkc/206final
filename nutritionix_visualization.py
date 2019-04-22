@@ -57,7 +57,6 @@ def create_scatter(data):
         text = 'Average Calories verses Average Fat for Six Food Groups',
         xref = 'paper',
         x=0
-<<<<<<< HEAD
     ),
     xaxis = go.layout.XAxis(
         title = go.layout.xaxis.Title(
@@ -197,32 +196,6 @@ if __name__ == "__main__":
 
     data = [trace0, trace1, trace2, trace3, trace4, trace5]
     create_scatter(data)
-=======
-    )
-    # xaxis = go.layout.XAxis(
-    #     title = go.layout.xaxis.Title(
-    #         text = 'Average Calories',
-    #         font = dict(
-    #             family = 'Courier New, monospace',
-    #             size = 18,
-    #             color = '#7f7f7f'
-    #         )
-    #     )
-    # ),
-
-    # yaxis = go.layout.YAxis(
-    #     title = go.layout.yaxis.Title(
-    #         text = 'Average Grams of Fat',
-    #         font = dict(
-    #             family = 'Courier New, monospace',
-    #             size = 18,
-    #             color = '#7f7f7f'
-    #         )
-    #     )
-    # )
-)
-fig = go.Figure(data=data, layout=layout)
->>>>>>> e84a85473def5a1b877051314a9a619ad5e15130
 
     #create bar graph for extra credit
     x_axis = ["Fruits", "Vegetables", "Carbs", "Protein", "Dairy", "Desserts"]
