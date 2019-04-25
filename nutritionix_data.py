@@ -43,6 +43,7 @@ def setUpTable(dct, conn, cur):
 
 if __name__ == "__main__":
     conn = sqlite3.connect('nutrition.sqlite')
+
     cur = conn.cursor()
 
     lst_fruit = ["apple", "banana", "pear", "grapes", "persimmon", "kiwi", "blueberries", "watermelon", "grapefruit", "guava", "plum", "mango", "peach", "cantaloupe", "pomegranate", "papaya", "apricot", "cranberry", "honeydew", "nectarine"]

@@ -1,12 +1,12 @@
-Average fruit calories: 77.43
-Average fruit grams of fat: 0.46
-Average vegetable calories: 62.47
-Average vegetable grams of fat: 1.23
-Average carbs calories: 181.71
-Average carbs grams of fat: 3.95
-Average protein calories: 260.54
-Average protein grams of fat: 16.33
-Average dairy calories: 202.51
-Average dairy grams of fat: 10.83
-Average dessert calories: 234.22
-Average dessert grams of fat: 11.07
+Average fruit calories: 94.72
+Average fruit grams of fat: 0.56
+Average vegetable calories: 53.96
+Average vegetable grams of fat: 1.33
+Average carbs calories: 174.57
+Average carbs grams of fat: 3.18
+Average protein calories: 272.8
+Average protein grams of fat: 16.59
+Average dairy calories: 160.0
+Average dairy grams of fat: 7.66
+Average dessert calories: 256.05
+Average dessert grams of fat: 12.84

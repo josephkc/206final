@@ -4,16 +4,15 @@ from calculations_yelp import *
 
 if __name__ == "__main__":
     soup = getSoupObjFromURL("https://www.michigan-demographics.com/cities_by_population")
-    # conn = sqlite3.connect(r"\Users\Owner'\Documents\si206\206final\nutrition.sqlite")
-    conn = sqlite3.connect(r'/Users/josephchoi/Desktop/si206/206final/nutrition.sqlite')
+    conn = sqlite3.connect("nutrition.sqlite")
 
     cur = conn.cursor()
 
-    #get_cities(soup)
-    #create_table(soup)
+    get_cities(soup)
+    create_table(soup)
     calculate(conn, cur)
-    #top_n = create_tuple(calculate(conn, cur), 20)
-    #visualize(top_n)
+    top_n = create_tuple(calculate(conn, cur), 20)
+    visualize(top_n)
 
 
     

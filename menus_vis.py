@@ -12,7 +12,7 @@ import plotly.graph_objs as go
 
 def count_cuisines(cur):
     cuisines_dict = {}
-    cur.execute("SELECT cuisine FROM AnnArbor")
+    cur.execute("SELECT cuisine FROM Menus")
     for row in cur:
         if row[0] not in cuisines_dict:
             cuisines_dict[row[0]] = 1
@@ -39,7 +39,6 @@ def calculate_top_n(cuisines_dict, n):
 
 
 def visualize(tuple_list):
-    # plotly.tools.set_credentials_file(username = "josephkc", api_key="3Q6YJh0ZIkkQuKBdRKb6")
     keys = []
     values = []
 

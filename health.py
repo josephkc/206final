@@ -38,7 +38,7 @@ def create_table(soup):
 		list_hundredcities.append(get_cities(soup)[count].text)
 		count = count + 1
 	list_hundredcities.remove('Warren')
-	conn = sqlite3.connect(r"\Users\Owner'\Documents\si206\206final\nutrition.sqlite")
+	conn = sqlite3.connect('nutrition.sqlite')
 	cur = conn.cursor()
 	cur.execute("DROP TABLE IF EXISTS Yelp")
 	cur.execute('CREATE TABLE Yelp (row INTEGER, rating INTEGER, location TEXT)')

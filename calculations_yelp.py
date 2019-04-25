@@ -19,7 +19,6 @@ def calculate(conn, cur):
     f = open("yelp_calculations.json","w")
     f.write(json_file)
     f.close()
-    cur.close()
     return dict_sum
 
     
@@ -32,9 +31,8 @@ def create_tuple(dict_sum, n):
     cuisines_sorted = sorted(tuples, reverse=True, key=lambda tup: tup[1])
 
     return cuisines_sorted[:n]
-'''
+
 def visualize(tuple_list):
-    # plotly.tools.set_credentials_file(username = "josephkc", api_key="3Q6YJh0ZIkkQuKBdRKb6")
     keys = []
     values = []
 
@@ -76,11 +74,23 @@ def visualize(tuple_list):
         title=go.layout.Title(
             text='Average Ratings of Korean Restaurants in Michigan',
             xref='paper',
-            x=0
-            y = 3
+            x=0,
+            
+        ),
+        xaxis = go.layout.XAxis(
+            title = go.layout.xaxis.Title(
+                text = 'City in Michigan',
+                font = dict(
+                    family = 'Roboto',
+                )
+            )
+        ),
+        yaxis = go.layout.YAxis(
+            title = go.layout.yaxis.Title(
+                text = 'Average rating'
+            )
         )
     )
+
     fig = go.Figure(data=data, layout=layout)
     print(py.plot(fig, filename="yelp_bar_graph", auto_open=True))
-    # py.plot(data)
-'''

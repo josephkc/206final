@@ -8,7 +8,7 @@ from menus import *
 from menus_vis import *
 
 if __name__ == "__main__":
-	conn = sqlite3.connect(r'/Users/josephchoi/Desktop/si206/206final/nutrition.sqlite')
+	conn = sqlite3.connect('nutrition.sqlite')
 	cur = conn.cursor()
 	
 	create_db(conn, cur)
