@@ -26,8 +26,8 @@ def getData(list_items):
     return items_dct
 
 def createTable(conn, cur):
-    cur.execute("DROP TABLE IF EXISTS Nutrition")
-    cur.execute('CREATE TABLE Nutrition (food TEXT, cals INTEGER, fat INTEGER)')
+    # cur.execute("DROP TABLE IF EXISTS Nutrition")
+    cur.execute('CREATE TABLE IF NOT EXISTS Nutrition (food TEXT, cals INTEGER, fat INTEGER)')
 
 
 def setUpTable(dct, conn, cur):

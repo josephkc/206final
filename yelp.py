@@ -40,8 +40,8 @@ def create_table(soup):
 	list_hundredcities.remove('Warren')
 	conn = sqlite3.connect('nutrition.sqlite')
 	cur = conn.cursor()
-	cur.execute("DROP TABLE IF EXISTS Yelp")
-	cur.execute('CREATE TABLE Yelp (row INTEGER, rating INTEGER, location TEXT)')
+	# cur.execute("DROP TABLE IF EXISTS Yelp")
+	cur.execute('CREATE TABLE IF NOT EXISTS Yelp (row INTEGER, rating INTEGER, location TEXT)')
 	count = 0
 	for location in list_hundredcities:
 		params = {'term' : 'korean', 'location': location, 'sort_by': 'rating', 'limit': "6"}
