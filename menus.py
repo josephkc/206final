@@ -6,8 +6,8 @@ import sqlite3
 # from private_keys import *
 
 def create_db(conn, cur):
-	# cur.execute("DROP TABLE IF EXISTS Menus")
-	cur.execute('CREATE TABLE IF NOT EXISTS Menus (restaurant TEXT, cuisine TEXT)')
+	cur.execute("DROP TABLE IF EXISTS Menus")
+	cur.execute('CREATE TABLE Menus (restaurant TEXT, cuisine TEXT)')
 
 def collect_data(conn, cur):
 	for page in range(1, 7): #1, 2, 3, 4, 5, 6
