@@ -1,6 +1,6 @@
 import json
 import sqlite3
-from health import *
+from yelp import *
 import plotly.plotly as py
 import plotly.graph_objs as go
 
